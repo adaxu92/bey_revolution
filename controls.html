@@ -82,15 +82,15 @@
 				});
 
 				$(document).keydown(function(e){
-					if(e.keyCode == 38){
-						if($('#up').css('bottom') < '30px'){
-							counter += 10;
-							$('.score').html(counter);
+					if(e.keyCode == 38){ // if key is up
+						if($('#up').css('bottom') < '30px'){ // if css bottom is less than 30
+							counter += 10; // add 10 points
+							$('.score').html(counter); // show the updated score
 						}else{
-							counter -= 5;
-							$('.score').html(counter);
+							counter -= 5; // if not its a miss and score will deduct 5 points
+							$('.score').html(counter); // show the updated score
 						}
-					} else if(e.keyCode == 40 ){
+					} else if(e.keyCode == 40 ){ // if key is down
 						if($('#down').css('bottom') < '30px'){
 							counter += 10;
 							$('.score').html(counter);
@@ -98,7 +98,7 @@
 							counter -= 5;
 							$('.score').html(counter);
 						}
-					} else if (e.keyCode == 37){
+					} else if (e.keyCode == 37){ // if key is left
 						if($('#left').css('bottom') < '30px'){
 							counter += 10;
 							$('.score').html(counter);
@@ -106,7 +106,7 @@
 							counter -= 5;
 							$('.score').html(counter);
 						}
-					} else if (e.keyCode == 39){
+					} else if (e.keyCode == 39){ // if key is right
 						if($('#right').css('bottom') < '30px'){
 							counter += 10;
 							$('.score').html(counter);
