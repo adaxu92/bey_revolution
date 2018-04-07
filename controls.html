@@ -1,28 +1,57 @@
 <html>
 <head>
 	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
-	<script src="jsRev.js" type="text/javascript"></script>
-	<link rel="stylesheet" type="text/css" href="style.css">
-	<title>JS Revolution</title>
+	<title>Bey Revolution</title>
 	<style type="text/css">
+	.stage{text-align: center;}
 		#controls{
 	    text-align: center;
 	    bottom: 0;
 	    position: fixed;
-	    left: 40%;
+	    width: 100%;
 		}
+		.floating,
 		.static{
 			padding: 0 10px;
+		}
+		.floating{
+			position: relative;
+		}
+		button{
+
 		}
 	</style>
 </head>
 <body>
-		<div class="stage"></div> <!-- ENDS .STAGE -->
+	<button value='Start' id="start">
+		Start
+	</button>
+	<button value='Reset' id="reset">
+		Reset
+	</button>
+		<div class="stage">	
+			<div>
+				<img class="floating" id="left" src="assets/staticLeft.png">
+				<img class="floating" id="up" src="assets/staticUp.png">
+				<img class="floating" id="down" src="assets/staticDown.png">
+				<img class="floating" id="right" src="assets/staticRight.png">
+			</div> <!-- ENDS #CONTROLS -->
+		</div> <!-- ENDS .STAGE -->
 		<div id="controls">
 			<img class="static" id="left" src="assets/staticLeft.png">
 			<img class="static" id="up" src="assets/staticUp.png">
 			<img class="static" id="down" src="assets/staticDown.png">
 			<img class="static" id="right" src="assets/staticRight.png">
 		</div> <!-- ENDS #CONTROLS -->
+		<script>
+			$(document).ready(function(){
+				$('#start').click(function(){
+					$('.floating').animate({'top': '+=350px'}, 'slow');
+				});
+				$('#reset').click(function(){
+					$('.floating').animate({'top': '0'}, 'slow');
+				});
+			});
+		</script>
 </body>
 </html>
