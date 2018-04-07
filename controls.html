@@ -3,7 +3,11 @@
 	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
 	<title>Bey Revolution</title>
 	<style type="text/css">
-	.stage{text-align: center;}
+		.stage{
+			text-align: center;
+  display: flex;
+  flex-flow: row wrap;
+		}
 		#controls{
 	    text-align: center;
 	    bottom: 0;
@@ -16,10 +20,25 @@
 		}
 		.floating{
 			position: fixed;
+			flex-direction: column;
 		}
-		button{
+		#staticLeft,
+		#left{
+			left: 38.2%;
+		}
+		#staticRight,
+		#right{
+			left: 56.9%;
+		}
+		#staticDown,
+		#down{
+			left: 50.7%;
+		}
+		#staticUp,
+		#up{
+			left: 44.5%;
+		}
 
-		}
 	</style>
 </head>
 <body>
@@ -29,7 +48,7 @@
 			// Randomizing arrows	
 			function random(){
 				var random_value = pointers[Math.floor(Math.random() * pointers.length)]; // function to return a random pointers value
-				var $arrows = $('<img>', {id: '#'+random_value, "class": "floating", "src": "assets/"+ random_value + ".gif"}); // creates an img element using random_value as its id and name of gif
+				var $arrows = $('<img>', {id: random_value, "class": "floating", "src": "assets/"+ random_value + ".gif"}); // creates an img element using random_value as its id and name of gif
 				$('.stage').append($arrows); // append to stage
 				$arrows.animate({'bottom': '0px'}, 'slow'); // animates to the bottom
 			}
@@ -66,10 +85,10 @@
 		</div> 
 
 		<div id="controls">
-			<img class="static" src="assets/staticLeft.png">
-			<img class="static" src="assets/staticUp.png">
-			<img class="static" src="assets/staticDown.png">
-			<img class="static" src="assets/staticRight.png">
+			<img class="static" id="staticLeft" src="assets/staticLeft.png">
+			<img class="static" id="staticUp" src="assets/staticUp.png">
+			<img class="static" id="staticDown" src="assets/staticDown.png">
+			<img class="static" id="staticRight" src="assets/staticRight.png">
 		</div>
 </body>
 </html>
