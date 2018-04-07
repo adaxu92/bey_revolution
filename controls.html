@@ -15,7 +15,7 @@
 			padding: 0 10px;
 		}
 		.floating{
-			position: relative;
+			position: fixed;
 		}
 		button{
 
@@ -23,35 +23,53 @@
 	</style>
 </head>
 <body>
-	<button value='Start' id="start">
+	<script>
+			var pointers = ['left', 'up', 'down', 'right'];
+
+			// Randomizing arrows	
+			function random(){
+				var random_value = pointers[Math.floor(Math.random() * pointers.length)]; // function to return a random pointers value
+				var $arrows = $('<img>', {id: '#'+random_value, "class": "floating", "src": "assets/"+ random_value + ".gif"}); // creates an img element using random_value as its id and name of gif
+				$('.stage').append($arrows); // append to stage
+				$arrows.animate({'bottom': '0px'}, 'slow'); // animates to the bottom
+			}
+			// Counter to spit out one arrow
+			function loopThru(){
+				var count = 0;
+				while (count < 1){ // loops once
+					random(); // Initiates random function
+					count++;
+				}
+			}
+			$(document).ready(function(){
+				$('#start').click(function(){ // Game Begins
+					// Every 1 sec, perform a loopThru function
+					var setInterval = window.setInterval(function(){
+					  loopThru(); 
+					}, 600);
+					// Reset  
+					$('#reset').click(function(){
+						window.clearInterval(setInterval); //stop doing the interval
+						$('.stage').empty(); // empty the arrows
+					});
+				});
+
+			});
+		</script>
+	<button value='Start' id="start" >
 		Start
 	</button>
 	<button value='Reset' id="reset">
 		Reset
 	</button>
 		<div class="stage">	
-			<div>
-				<img class="floating" id="left" src="assets/staticLeft.png">
-				<img class="floating" id="up" src="assets/staticUp.png">
-				<img class="floating" id="down" src="assets/staticDown.png">
-				<img class="floating" id="right" src="assets/staticRight.png">
-			</div> <!-- ENDS #CONTROLS -->
-		</div> <!-- ENDS .STAGE -->
+		</div> 
+
 		<div id="controls">
-			<img class="static" id="left" src="assets/staticLeft.png">
-			<img class="static" id="up" src="assets/staticUp.png">
-			<img class="static" id="down" src="assets/staticDown.png">
-			<img class="static" id="right" src="assets/staticRight.png">
-		</div> <!-- ENDS #CONTROLS -->
-		<script>
-			$(document).ready(function(){
-				$('#start').click(function(){
-					$('.floating').animate({'top': '+=350px'}, 'slow');
-				});
-				$('#reset').click(function(){
-					$('.floating').animate({'top': '0'}, 'slow');
-				});
-			});
-		</script>
+			<img class="static" src="assets/staticLeft.png">
+			<img class="static" src="assets/staticUp.png">
+			<img class="static" src="assets/staticDown.png">
+			<img class="static" src="assets/staticRight.png">
+		</div>
 </body>
 </html>
