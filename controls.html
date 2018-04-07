@@ -5,8 +5,6 @@
 	<style type="text/css">
 		.stage{
 			text-align: center;
-  display: flex;
-  flex-flow: row wrap;
 		}
 		#controls{
 	    text-align: center;
@@ -44,13 +42,20 @@
 <body>
 	<script>
 			var pointers = ['left', 'up', 'down', 'right'];
-
+			var counter = 0;
 			// Randomizing arrows	
 			function random(){
 				var random_value = pointers[Math.floor(Math.random() * pointers.length)]; // function to return a random pointers value
 				var $arrows = $('<img>', {id: random_value, "class": "floating", "src": "assets/"+ random_value + ".gif"}); // creates an img element using random_value as its id and name of gif
 				$('.stage').append($arrows); // append to stage
-				$arrows.animate({'bottom': '0px'}, 'slow'); // animates to the bottom
+				$arrows.animate({'bottom': '-5px'}, 'slow'); // animates to the bottom
+			}
+			function check(){
+				// console.log($('.floating').css('bottom') );
+				if($('.floating').css('bottom') == '-5px'){
+					$('.floating').remove();
+				}
+
 			}
 			// Counter to spit out one arrow
 			function loopThru(){
@@ -65,14 +70,54 @@
 					// Every 1 sec, perform a loopThru function
 					var setInterval = window.setInterval(function(){
 					  loopThru(); 
+					  check();
 					}, 600);
+					$
 					// Reset  
 					$('#reset').click(function(){
 						window.clearInterval(setInterval); //stop doing the interval
 						$('.stage').empty(); // empty the arrows
+						$('.score').html(0);
 					});
 				});
 
+				$(document).keydown(function(e){
+					if(e.keyCode == 38){
+						if($('#up').css('bottom') < '30px'){
+							counter += 10;
+							$('.score').html(counter);
+						}else{
+							counter -= 5;
+							$('.score').html(counter);
+						}
+					} else if(e.keyCode == 40 ){
+						if($('#down').css('bottom') < '30px'){
+							counter += 10;
+							$('.score').html(counter);
+						}else{
+							counter -= 5;
+							$('.score').html(counter);
+						}
+					} else if (e.keyCode == 37){
+						if($('#left').css('bottom') < '30px'){
+							counter += 10;
+							$('.score').html(counter);
+						}else{
+							counter -= 5;
+							$('.score').html(counter);
+						}
+					} else if (e.keyCode == 39){
+						if($('#right').css('bottom') < '30px'){
+							counter += 10;
+							$('.score').html(counter);
+						}else{
+							counter -= 5;
+							$('.score').html(counter);
+						}
+					} else{
+
+					}
+				});
 			});
 		</script>
 	<button value='Start' id="start" >
@@ -90,5 +135,6 @@
 			<img class="static" id="staticDown" src="assets/staticDown.png">
 			<img class="static" id="staticRight" src="assets/staticRight.png">
 		</div>
+		<div class="score-wrapper">Score: <span class="score"></span></div>
 </body>
 </html>
